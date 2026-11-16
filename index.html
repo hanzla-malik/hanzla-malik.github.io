@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hanzla Malik | Aspiring SOC Analyst</title>
+<meta name="description" content="Portfolio of Hanzla Malik, BSCS student and cybersecurity practitioner: SOC, penetration testing and digital forensics.">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B0B0C'/%3E%3Ctext x='50' y='66' font-size='44' text-anchor='middle' fill='%23FF6B5B' font-family='sans-serif' font-weight='800'%3EHM%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bk:#0B0B0C;--w:#FFFFFF;--c:#FF6B5B;--dim:rgba(255,255,255,.64);--ln:rgba(255,255,255,.13);--sf:rgba(255,255,255,.04);--head:'Unbounded',system-ui,sans-serif;--body:'Hanken Grotesk',system-ui,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bk);color:var(--w);font:400 17px/1.7 var(--body);overflow-x:hidden}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+::selection{background:var(--c);color:var(--bk)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+section{position:relative}
+.pad{padding:130px 0}
+h2{font:700 clamp(28px,4vw,52px)/1.1 var(--head);letter-spacing:-.03em;margin-bottom:20px}
+.sub{max-width:600px;color:var(--dim);margin-bottom:54px}
+#pre{position:fixed;inset:0;z-index:300;display:grid;place-items:center;pointer-events:none}
+#pre .pa,#pre .pb{position:absolute;top:0;bottom:0;width:50.5%;background:var(--bk);transition:transform 1s cubic-bezier(.77,0,.18,1) .3s}
+#pre .pa{left:0}#pre .pb{right:0}
+#pre.out .pa{transform:translateX(-100%)}#pre.out .pb{transform:translateX(100%)}
+#pre .pm{position:relative;text-align:center;transition:opacity .4s,transform .7s}
+#pre.out .pm{opacity:0;transform:scale(1.35)}
+#pre svg{width:92px;color:var(--c);filter:drop-shadow(0 0 18px rgba(255,107,91,.5))}
+#pre .sp{fill:none;stroke:currentColor;stroke-width:2.2;stroke-dasharray:100;stroke-dashoffset:100;animation:dr 1.5s .1s cubic-bezier(.6,0,.2,1) forwards}
+#pre text{fill:currentColor;opacity:0;animation:fi .5s 1.1s forwards}
+#pre small{display:block;margin-top:16px;font-size:12px;letter-spacing:.2em;color:var(--dim);opacity:0;animation:fi .5s .5s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}@keyframes fi{to{opacity:1}}
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--c);z-index:150}
+.cur{position:fixed;left:0;top:0;pointer-events:none;z-index:250;display:none}
+@media(hover:hover) and (pointer:fine){.cur{display:block}body,a,button,[data-p],[data-s],.chip{cursor:none}}
+.cur.d{width:8px;height:8px;margin:-4px;border-radius:50%;background:var(--c)}
+.cur.r{width:38px;height:38px;margin:-19px;border-radius:50%;border:1.5px solid rgba(255,255,255,.5);transition:width .25s,height .25s,margin .25s,background .25s}
+.cur.r.h{width:68px;height:68px;margin:-34px;background:rgba(255,107,91,.18);border-color:var(--c)}
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:100;width:min(1000px,calc(100% - 24px));display:flex;align-items:center;justify-content:space-between;padding:9px 9px 9px 24px;border-radius:999px;background:rgba(11,11,12,.7);backdrop-filter:blur(16px);border:1px solid var(--ln)}
+.nav b{font:700 17px var(--head)}.nav b i{color:var(--c);font-style:normal}
+.nav nav{display:flex;gap:2px}
+.nav nav a{padding:8px 13px;border-radius:999px;font-size:14px;font-weight:500;color:var(--dim);transition:.25s}
+.nav nav a:hover,.nav nav a.on{color:var(--w);background:var(--sf)}
+.menu{display:none;background:none;border:1px solid var(--ln);color:var(--w);border-radius:999px;padding:9px 16px;font:600 13px var(--body);margin:0 8px 0 auto}
+@media(max-width:940px){.nav nav{position:fixed;inset:80px 12px auto;flex-direction:column;background:rgba(11,11,12,.97);border:1px solid var(--ln);border-radius:24px;padding:12px;display:none}.nav nav.open{display:flex}.menu{display:block}}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;background:var(--c);color:var(--bk);font:700 13px var(--head);border:0;transition:box-shadow .3s,color .3s,border-color .3s;will-change:transform;cursor:pointer}
+.btn:hover{box-shadow:0 14px 40px rgba(255,107,91,.45)}
+.btn.sm{padding:10px 20px;font-size:12px}
+.btn.gh{background:transparent;color:var(--w);border:1.5px solid var(--ln)}.btn.gh:hover{border-color:var(--c);box-shadow:none;color:var(--c)}
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:110px 0;overflow:hidden}
+#rain{position:absolute;inset:0;width:100%;height:100%;opacity:.55;-webkit-mask-image:linear-gradient(90deg,transparent 8%,#000 52%);mask-image:linear-gradient(90deg,transparent 8%,#000 52%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 72% 50%,transparent 30%,var(--bk) 85%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 1fr;gap:30px;align-items:center;width:100%}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}#rain{opacity:.32;-webkit-mask-image:none;mask-image:none}}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border:1px solid var(--ln);border-radius:999px;font-size:14px;color:var(--dim);margin-bottom:24px;background:rgba(11,11,12,.6)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--c);animation:pu 1.8s infinite}
+@keyframes pu{0%{box-shadow:0 0 0 0 rgba(255,107,91,.7)}70%,100%{box-shadow:0 0 0 10px rgba(255,107,91,0)}}
+h1{font:700 clamp(36px,5.4vw,78px)/1.04 var(--head);letter-spacing:-.04em}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.08em}
+h1 .ln span{display:inline-block;transform:translateY(115%)}
+body.go h1 .ln span{animation:up 1.1s cubic-bezier(.2,.9,.2,1) forwards}
+body.go h1 .ln:nth-child(2) span{animation-delay:.12s;color:var(--c)}
+@keyframes up{to{transform:none}}
+.role{font:500 clamp(16px,1.9vw,22px) var(--head);margin:22px 0 14px;min-height:1.6em;color:var(--dim)}.role i{color:var(--c);font-style:normal;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.lead{max-width:520px;color:var(--dim)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.scene{position:relative;perspective:1200px;transform-style:preserve-3d;display:grid;place-items:center;padding:60px 0;min-height:520px}
+.hood{position:absolute;left:50%;top:50%;width:min(480px,118%);transform:translate(-50%,-54%) translate3d(calc(var(--px,0)*-16px),calc(var(--py,0)*-10px),-80px);overflow:visible}
+.hood .h1{fill:rgba(255,107,91,.05);stroke:var(--c);stroke-width:1.6;stroke-dasharray:6 9;animation:dash 7s linear infinite;filter:drop-shadow(0 0 8px rgba(255,107,91,.75))}
+.hood .h2{fill:none;stroke:rgba(255,255,255,.2);stroke-width:1}
+.hood .gl{animation:gz 5s steps(1) infinite}
+@keyframes dash{to{stroke-dashoffset:-150}}
+@keyframes gz{0%,94%,100%{transform:none}95%{transform:translate(5px,-2px)}97%{transform:translate(-5px,2px)}}
+.frame{position:relative;width:min(280px,66vw);aspect-ratio:4/5;transform-style:preserve-3d;transition:transform .15s ease-out}
+.frame .main{position:absolute;inset:0;border-radius:26px;overflow:hidden;border:1.5px solid var(--c);background:#141416;box-shadow:0 30px 90px rgba(0,0,0,.7),0 0 70px rgba(255,107,91,.25)}
+.frame .main img{width:100%;height:100%;object-fit:cover}
+.tag3{position:absolute;padding:9px 15px;border-radius:12px;background:var(--bk);border:1px solid var(--c);font:700 11px var(--head);animation:fl 5s ease-in-out infinite;z-index:3}
+.tag3.a{left:-46px;top:10%;transform:translateZ(80px)}.tag3.b{right:-40px;bottom:12%;transform:translateZ(70px);animation-delay:-2.5s;background:var(--c);color:var(--bk)}
+@keyframes fl{50%{translate:0 -12px}}
+.tm{position:absolute;width:236px;background:rgba(11,11,12,.9);border:1px solid var(--ln);border-radius:12px;overflow:hidden;font:500 11px/1.6 var(--mono);box-shadow:0 20px 50px rgba(0,0,0,.6);animation:fl 6s ease-in-out infinite}
+.tm pre{padding:10px 12px;white-space:pre-wrap;color:#fff;font:inherit}.tm .g{color:var(--c)}.tm .d{color:var(--dim)}
+.tm.t1{left:-150px;bottom:2%;transform:translate3d(calc(var(--px,0)*26px),calc(var(--py,0)*18px),90px)}
+.tm.t2{right:-120px;top:0;transform:translate3d(calc(var(--px,0)*30px),calc(var(--py,0)*20px),60px);animation-delay:-3s}
+@media(max-width:1180px){.tm{display:none}}
+.ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;width:100%;height:100%;min-height:170px;color:var(--dim);font-size:13px;text-align:center;padding:16px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 12px,transparent 12px 24px)}
+.ph svg{width:44px;color:var(--c)}
+.feed{position:absolute;left:24px;bottom:26px;z-index:3;font:500 12px/1.5 var(--mono);color:var(--dim);max-width:60vw}.feed b{color:var(--c)}
+.soc{position:absolute;right:24px;bottom:26px;z-index:3;display:flex;gap:10px}
+.soc a{width:42px;height:42px;border-radius:50%;border:1px solid var(--ln);display:grid;place-items:center;font:700 12px var(--head);background:rgba(11,11,12,.6);transition:.25s}.soc a:hover{background:var(--c);color:var(--bk);border-color:var(--c)}
+@media(max-width:700px){.soc{display:none}}
+.mq{overflow:hidden;border-block:1px solid var(--ln);padding:20px 0;position:relative;z-index:3;background:var(--bk)}
+.mq div{display:flex;gap:44px;width:max-content;animation:mq 42s linear infinite;font:700 clamp(17px,2.2vw,26px) var(--head);white-space:nowrap}
+.mq span:nth-child(even){color:var(--c)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.rv{opacity:0;transform:perspective(1200px) rotateX(9deg) translateY(50px);transform-origin:50% 0;transition:opacity 1s,transform 1.1s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
+.wb{display:flex;gap:6px;align-items:center;padding:10px 14px;background:#141416;border-bottom:1px solid var(--ln);font:500 12px var(--mono);color:var(--dim)}.wb i{width:9px;height:9px;border-radius:50%;background:var(--ln)}.wb i:first-child{background:var(--c)}.wb span{margin-left:10px}
+/* about */
+.ab{display:grid;grid-template-columns:1.15fr 1fr;gap:20px}@media(max-width:900px){.ab{grid-template-columns:1fr}}
+.term{border:1px solid var(--ln);border-radius:24px;overflow:hidden;background:rgba(255,255,255,.02);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.tb{padding:22px 24px 26px;font:400 14px/1.75 var(--mono)}
+.tln{opacity:0;white-space:pre-wrap;margin-bottom:2px}.tln.o{color:var(--dim);margin-bottom:14px}.tln .pr{color:var(--c)}
+.in .tln{animation:ap .01s forwards;animation-delay:calc(var(--i)*.45s)}
+@keyframes ap{to{opacity:1}}
+.tb .cu{display:inline-block;width:8px;height:15px;background:var(--c);vertical-align:-2px;animation:bl 1s steps(1) infinite}
+.abr{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:start}
+.bc{padding:24px;border:1px solid var(--ln);border-radius:24px;background:var(--sf);transition:border-color .3s,transform .3s}.bc:hover{border-color:var(--c);transform:translateY(-4px)}
+.bc .n{display:block;font:700 clamp(36px,4.2vw,54px)/1 var(--head);color:var(--c);margin-bottom:6px}.bc small{color:var(--dim);font-size:14px}
+.bc.now{grid-column:1/-1;background:linear-gradient(135deg,rgba(255,107,91,.16),transparent 70%),var(--sf)}
+.bc.now h3{font:700 18px var(--head);margin:12px 0 8px}.chips{display:flex;flex-wrap:wrap;gap:7px}.chips span{font-size:13px;font-weight:700;padding:5px 13px;border-radius:999px;border:1px solid var(--ln)}
+.focus{display:flex;gap:16px;margin-top:20px}
+.fp{flex:1;padding:28px;border:1px solid var(--ln);border-radius:26px;background:var(--sf);transition:flex .55s cubic-bezier(.2,.8,.2,1),border-color .3s;overflow:hidden;min-width:0}
+.fp:hover{flex:1.9;border-color:var(--c)}
+.fp h3{font:700 clamp(18px,2vw,24px) var(--head);margin-bottom:6px;letter-spacing:-.02em}.fp h3 em{font-style:normal;color:var(--c)}
+.fp ul{list-style:none;margin-top:14px;color:var(--dim);font-size:15px}.fp li{padding:5px 0 5px 20px;position:relative}.fp li::before{content:">";position:absolute;left:0;color:var(--c);font-family:var(--mono)}
+@media(max-width:900px){.focus{flex-direction:column}}
+/* skills */
+.sk{display:grid;grid-template-columns:1.05fr 1fr;gap:50px;align-items:center}@media(max-width:900px){.sk{grid-template-columns:1fr}}
+.rad{width:100%;max-width:540px;margin:auto;display:block;overflow:visible}
+.rad text{fill:var(--w);font:500 11.5px var(--body)}.rad .gr{fill:none;stroke:var(--ln)}
+.rad .dp{fill:rgba(255,107,91,.22);stroke:var(--c);stroke-width:2;stroke-linejoin:round;transform:scale(0);transform-origin:210px 200px;transition:transform 1.4s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 10px rgba(255,107,91,.5))}
+.in .rad .dp{transform:scale(1)}
+.bar{margin-bottom:16px}.bar .t{display:flex;justify-content:space-between;margin-bottom:7px;font-size:15px}.bar .t span:last-child{color:var(--c);font-weight:700}
+.bar .m{height:6px;border-radius:3px;background:var(--ln);overflow:hidden}.bar .m i{display:block;height:100%;width:0;border-radius:3px;background:var(--c);box-shadow:0 0 12px var(--c);transition:width 1.5s cubic-bezier(.2,.8,.2,1)}
+/* tools */
+.filt{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.chip{padding:9px 20px;border-radius:999px;border:1px solid var(--ln);background:transparent;color:var(--dim);font:500 14px var(--body);transition:.25s}
+.chip:hover{color:var(--w);border-color:var(--w)}.chip.on{background:var(--c);border-color:var(--c);color:var(--bk);font-weight:700}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;perspective:900px}
+.tool{--mx:50%;--my:50%;display:flex;align-items:center;gap:14px;padding:14px 18px 14px 14px;border:1px solid var(--ln);border-radius:22px;background:radial-gradient(circle at var(--mx) var(--my),rgba(255,107,91,.24),transparent 60%),var(--sf);transition:transform .15s ease-out,border-color .3s;font-weight:700}
+.tool:hover{border-color:var(--c)}.tool.hide{display:none}
+@keyframes pop{from{opacity:0;transform:scale(.9)}}
+.lg{flex:0 0 52px;height:52px;border-radius:15px;background:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.lg img{width:30px;height:30px;object-fit:contain}.lg b{color:var(--bk);font:700 14px var(--head)}
+.tool span{line-height:1.25}.tool small{display:block;font-weight:400;color:var(--dim);font-size:12px}
+.tags{display:flex;flex-wrap:wrap;gap:7px}.tags span{font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;border:1px solid var(--ln);color:var(--c)}
+.gal{columns:3 300px;column-gap:18px}
+.gi{break-inside:avoid;margin-bottom:18px;border-radius:20px;overflow:hidden;border:1px solid var(--ln);position:relative;cursor:zoom-in;background:#141416}
+.gi img{width:100%;transition:transform .8s}.gi .mi{overflow:hidden}.gi:hover img{transform:scale(1.05)}
+.gi p{position:absolute;left:0;right:0;bottom:0;padding:40px 18px 16px;background:linear-gradient(transparent,rgba(11,11,12,.93));font-size:14px;transform:translateY(100%);transition:transform .4s}.gi:hover p{transform:none}
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;perspective:1000px}
+.cert{padding:28px;border:1px solid var(--ln);border-radius:26px;background:var(--sf);transition:transform .15s ease-out,border-color .3s}.cert:hover{border-color:var(--c)}
+.cert em{font-style:normal;font-size:12px;font-weight:700;color:var(--bk);background:var(--c);padding:4px 12px;border-radius:999px}
+.cert em.ip{background:transparent;color:var(--c);border:1px solid var(--c)}
+.cert h3{font:700 19px/1.3 var(--head);margin:18px 0 6px}.cert p{color:var(--dim);font-size:15px}.cert a{display:inline-block;margin-top:16px;color:var(--c);font-weight:700;font-size:14px}
+.tl{position:relative;--p:0;max-width:980px;margin:auto}
+.tl::before,.tl::after{content:"";position:absolute;left:50%;top:0;width:2px;height:100%;margin-left:-1px;background:var(--ln)}
+.tl::after{background:var(--c);transform-origin:top;transform:scaleY(var(--p));box-shadow:0 0 12px var(--c)}
+.it{position:relative;width:50%;padding:0 44px 54px 0;text-align:right}
+.it:nth-child(even){margin-left:50%;padding:0 0 54px 44px;text-align:left}
+.it::before{content:"";position:absolute;right:-9px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--bk);border:3px solid var(--c)}
+.it:nth-child(even)::before{right:auto;left:-9px}
+.it small{color:var(--c);font-weight:700}.it h3{font:700 21px/1.3 var(--head);margin:4px 0;letter-spacing:-.02em}.it .pl2{color:var(--dim)}.it p{color:var(--dim);margin-top:6px}
+@media(max-width:760px){.tl::before,.tl::after{left:9px}.it,.it:nth-child(even){width:100%;margin-left:0;padding:0 0 46px 42px;text-align:left}.it::before,.it:nth-child(even)::before{left:0;right:auto}}
+.cbig{font:700 clamp(40px,8vw,116px)/.98 var(--head);letter-spacing:-.05em;margin-bottom:50px}.cbig span{color:transparent;-webkit-text-stroke:2px var(--c)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:50px}@media(max-width:860px){.cg{grid-template-columns:1fr}}
+form{display:grid;gap:14px}
+input,textarea{width:100%;padding:16px 18px;background:var(--sf);border:1px solid var(--ln);border-radius:16px;color:var(--w);font:400 16px var(--body)}
+input:focus,textarea:focus{outline:none;border-color:var(--c)}textarea{min-height:140px;resize:vertical}
+.links{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+footer{border-top:1px solid var(--ln);padding:34px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--dim);font-size:14px}footer a{color:var(--c);font-weight:700}
+dialog{margin:auto;border:1px solid var(--ln);border-radius:26px;max-width:min(860px,94vw);width:100%;max-height:90vh;overflow:auto;background:var(--bk);color:var(--w);padding:0}
+dialog::backdrop{background:rgba(0,0,0,.82);backdrop-filter:blur(8px)}
+dialog img{width:100%;max-height:60vh;object-fit:contain;background:#000}dialog .ph{min-height:260px}
+.dc{padding:26px 30px 32px}.dc h3{font:700 26px var(--head);margin-bottom:10px}.dc ul{margin:12px 0 18px 20px;color:var(--dim)}.dc p{color:var(--dim)}.dc .tags{margin-bottom:18px}
+.x{position:sticky;top:10px;float:right;margin:10px;width:40px;height:40px;border-radius:50%;border:0;background:var(--c);color:var(--bk);font:700 18px var(--head);z-index:2;cursor:pointer}
+.nav{transition:transform .55s cubic-bezier(.2,.8,.2,1)}.nav.hide{transform:translate(-50%,-160%)}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(640px circle at var(--gx,80%) var(--gy,20%),rgba(255,107,91,.07),transparent 60%)}
+h2::after{content:"";display:block;height:3px;width:0;margin-top:14px;background:var(--c);border-radius:2px;transition:width 1s cubic-bezier(.2,.8,.2,1) .35s}.rv.in h2::after{width:56px}.hh h2::after{display:none}
+.rv:not(.in) .st-i{opacity:0}.rv.in .st-i{animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0ms)}
+@keyframes rise{from{opacity:0;translate:0 34px}}
+.gi .mi{clip-path:inset(0);transition:clip-path 1.2s cubic-bezier(.77,0,.18,1) var(--d,0ms)}.rv:not(.in) .gi .mi{clip-path:inset(0 0 100% 0)}
+.mq:hover div{animation-play-state:paused}
+dialog[open]{animation:dlgIn .45s cubic-bezier(.2,.9,.2,1)}dialog[open]::backdrop{animation:bdIn .4s}
+@keyframes dlgIn{from{opacity:0;transform:translateY(26px) scale(.96)}}@keyframes bdIn{from{opacity:0}}
+.pj{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+.pl{display:flex;flex-direction:column;gap:6px}
+.pi{display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:18px 20px;border:1px solid transparent;border-radius:20px;background:transparent;color:var(--dim);font:inherit;position:relative;overflow:hidden;transition:background .4s,color .4s,border-color .4s}
+.pi:hover{color:var(--w);background:var(--sf)}
+.pi .n{font:700 14px var(--head);transition:color .4s}
+.pi .t{flex:1;font:700 17px/1.3 var(--head);letter-spacing:-.02em}.pi .t small{display:block;margin-top:5px;font:400 13px var(--body);letter-spacing:0;color:var(--dim)}
+.pi.on{background:var(--sf);border-color:var(--ln);color:var(--w)}.pi.on .n{color:var(--c)}
+.pi i{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--c);box-shadow:0 0 10px var(--c)}
+.pi.on i{animation:fill 7s linear forwards}
+@keyframes fill{to{width:100%}}
+.pj.off i,.pj:hover i{animation-play-state:paused}
+.pv{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--ln);border-radius:28px;overflow:hidden;background:var(--sf);min-height:440px}
+.pv .im{display:flex;flex-direction:column;background:#141416;cursor:zoom-in;overflow:hidden;animation:wipe 1s cubic-bezier(.77,0,.18,1) both}
+.pv .mi{flex:1;min-height:0;overflow:hidden}.pv .mi img,.pv .mi .ph{width:100%;height:100%;object-fit:cover;animation:zi 1.4s cubic-bezier(.2,.8,.2,1) both}
+.pd{padding:34px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.pd>*{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}.pd>:nth-child(2){animation-delay:.08s}.pd>:nth-child(3){animation-delay:.16s}.pd>:nth-child(4){animation-delay:.24s}.pd>:nth-child(5){animation-delay:.32s}
+.pd h3{font:700 clamp(22px,2.4vw,30px)/1.15 var(--head);letter-spacing:-.02em}.pd p{color:var(--dim);font-size:16px}
+.pd ul{list-style:none;color:var(--dim);font-size:15px}.pd li{padding:3px 0 3px 20px;position:relative}.pd li::before{content:">";position:absolute;left:0;color:var(--c);font-family:var(--mono)}
+.pd .btn{align-self:flex-start}
+@keyframes wipe{from{clip-path:inset(0 0 0 100%)}}@keyframes zi{from{transform:scale(1.14)}}
+@media(max-width:1000px){.pj{grid-template-columns:1fr}.pl{flex-direction:row;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}.pl::-webkit-scrollbar{display:none}.pi{flex:0 0 auto;width:auto;padding:12px 16px}.pi .t small{display:none}.pv{grid-template-columns:1fr}.pv .mi{aspect-ratio:16/10;flex:none}}
+.pad::before{content:"";position:absolute;top:0;left:50%;width:min(1132px,calc(100% - 48px));height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);transform:translateX(-50%) scaleX(0);transition:transform 1.5s cubic-bezier(.2,.8,.2,1)}
+.pad.seen::before{transform:translateX(-50%) scaleX(1)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}h1 .ln span{transform:none}.tln{opacity:1}#rain{display:none}.rad .dp{transform:none}}
+</style>
+</head>
+<body class="lock">
+<div id="pre"><div class="pa"></div><div class="pb"></div>
+  <div class="pm"><svg viewBox="0 0 100 120" aria-hidden="true"><path class="sp" pathLength="100" d="M50 6L90 20V56C90 84 72 104 50 114C28 104 10 84 10 56V20Z"/><text x="50" y="70" text-anchor="middle" font-size="28" font-weight="700" font-family="Unbounded,sans-serif">HM</text></svg><small>SECURING CONNECTION</small></div>
+</div>
+<div id="prog"></div><div class="cur r" id="cr"></div><div class="cur d" id="cd"></div>
+
+<header class="nav">
+  <b>HM<i>.</i></b>
+  <button class="menu" id="menu" aria-expanded="false">Menu</button>
+  <nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#tools">Tools</a><a href="#journey">Experience</a><a href="#projects">Projects</a><a href="#work">Screenshots</a><a href="#certs">Certifications</a></nav>
+  <a class="btn sm" id="navCv" data-mag target="_blank" rel="noopener">Resume</a>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div>
+      <div class="pill"><i></i>Open to SOC, DFIR and pentest roles</div>
+      <h1 id="name"></h1>
+      <div class="role"><span id="role"></span><i>|</i></div>
+      <p class="lead" id="tag"></p>
+      <div class="cta"><a class="btn" data-mag href="#projects">View my work</a><a class="btn gh" data-mag id="heroCv" target="_blank" rel="noopener">Download resume</a></div>
+    </div>
+    <div class="scene" id="scene">
+      <svg class="hood" viewBox="0 0 400 460" aria-hidden="true"><g class="gl"><path class="h2" d="M200 20C120 20 70 80 70 160C70 215 90 250 110 275C60 300 20 340 10 440L390 440C380 340 340 300 290 275C310 250 330 215 330 160C330 80 280 20 200 20Z"/><path class="h1" d="M200 20C120 20 70 80 70 160C70 215 90 250 110 275C60 300 20 340 10 440L390 440C380 340 340 300 290 275C310 250 330 215 330 160C330 80 280 20 200 20Z"/></g></svg>
+      <div class="tm t1"><div class="wb"><i></i><i></i><i></i></div><pre><span class="g">root@kali</span>:~# nmap -sV 10.10.10.5
+<span class="d">22/tcp open  ssh
+80/tcp open  http</span>
+<span class="g">[+]</span> scan complete</pre></div>
+      <div class="tm t2"><div class="wb"><i></i><i></i><i></i></div><pre><span class="g">dfir@lab</span>:~$ volatility pslist
+<span class="d">[+] processes parsed</span>
+<span class="g">[!]</span> suspicious: svch0st.exe</pre></div>
+      <div class="frame" id="frame">
+        <div class="main" id="heroImg"></div>
+        <div class="tag3 a">SOC Level 1</div><div class="tag3 b">Red team + DFIR</div>
+      </div>
+    </div>
+  </div>
+  <div class="feed" id="feed"></div>
+  <div class="soc" id="soc"></div>
+</section>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section class="pad" id="about"><div class="wrap rv">
+  <h2 data-scr>About me</h2>
+  <p class="sub">Cybersecurity from both sides: defending as a SOC and forensics analyst, and thinking like an attacker.</p>
+  <div class="ab"><div class="term"><div class="wb"><i></i><i></i><i></i><span>hanzla@portfolio: ~/about</span></div><div class="tb" id="term"></div></div><div class="abr" id="abr"></div></div>
+  <div class="focus" id="focus"></div>
+</div></section>
+
+<section class="pad" id="skills"><div class="wrap rv">
+  <h2 data-scr>Skills</h2>
+  <p class="sub">Self-rated levels from training, labs, TryHackMe and internship work.</p>
+  <div class="sk"><div id="radar"></div><div id="bars"></div></div>
+</div></section>
+
+<section class="pad" id="tools"><div class="wrap rv">
+  <h2 data-scr>Tools I've used</h2>
+  <p class="sub">The tools I work with in labs, investigations and internships.</p>
+  <div class="filt" id="filt"></div>
+  <div class="tools" id="toolBox"></div>
+</div></section>
+
+<section class="pad" id="journey"><div class="wrap rv">
+  <h2 data-scr>Experience and education</h2>
+  <p class="sub">How I got here and where I'm going.</p>
+  <div class="tl" id="tl"></div>
+</div></section>
+
+<section class="pad" id="projects"><div class="wrap rv">
+  <h2 data-scr>Projects</h2>
+  <p class="sub">Pick a project to see what I did. They also rotate on their own.</p>
+  <div class="pj" id="pj"><div class="pl" id="pl"></div><div class="pv" id="pv"></div></div>
+</div></section>
+
+<section class="pad" id="work"><div class="wrap rv">
+  <h2 data-scr>Screenshots from my work</h2>
+  <p class="sub">Captures from my labs and tools. Click one to enlarge it.</p>
+  <div class="gal" id="gal"></div>
+</div></section>
+
+<section class="pad" id="certs"><div class="wrap rv">
+  <h2 data-scr>Certifications and courses</h2>
+  <p class="sub">Formal training and completed course modules.</p>
+  <div class="certs" id="certBox"></div>
+</div></section>
+
+<section class="pad" id="contact"><div class="wrap rv">
+  <div class="cbig">Let's<br><span>connect.</span></div>
+  <div class="cg">
+    <div><p class="sub" style="margin-bottom:0">I'm looking for SOC analyst, DFIR, penetration testing or cybersecurity roles. Send a message and I'll reply.</p><div class="links" id="links"></div></div>
+    <form id="form"><input id="fn" placeholder="Your name" required><input id="fe" type="email" placeholder="Your email" required><textarea id="fm" placeholder="Your message" required></textarea><button class="btn" data-mag type="submit">Send message</button></form>
+  </div>
+</div></section>
+</main>
+
+<footer><span>&copy; <span id="yr"></span> Hanzla Malik. Built with HTML, CSS and JavaScript.</span><a href="#hero">Back to top</a></footer>
+<dialog id="dlg"><button class="x" aria-label="Close" onclick="document.getElementById('dlg').close()">&times;</button><div id="dlgBody"></div></dialog>
+
+<script>
+/* ==========================================================
+   EDIT YOUR DATA HERE. The whole site is built from this object.
+   SAMPLE = placeholder or my guess: replace it with your real info.
+   Images: leave "" until you have a file, then write its path,
+   for example "images/project-1.jpg".
+   ========================================================== */
+const DATA = {
+  name: ["Hanzla", "Malik"],
+  roles: ["Aspiring SOC Analyst", "Cybersecurity student", "Pentesting and red team learner", "DFIR practitioner", "Ethical hacking learner"],
+  tagline: "BSCS student with 2 years in cybersecurity. I work across SOC monitoring, penetration testing and digital forensics.",
+  heroImage: "",                              // e.g. "images/hero.jpg": put your photo here
+  github: "https://github.com/hanzla-malik",
+  linkedin: "https://www.linkedin.com/in/hanzla-malik-beingchampion",
+  email: "your.email@example.com",            // SAMPLE: your real email
+  resume: "resume.pdf",
+  years: 2,
+  terminal: [  // the typing terminal in About
+    ["whoami", "Hanzla Malik: BSCS student and cybersecurity practitioner"],
+    ["cat focus.txt", "Blue team: SOC Level 1, DFIR, malware analysis\nRed team: pentesting, ethical hacking (CEH), Kali Linux\nFoundations: networking, Windows admin, Linux, Azure, Python"],
+    ["cat experience.txt", "2 years in cybersecurity.\nInterning in cybersecurity, digital forensics and networking."],
+    ["cat education.txt", "BSCS, Virtual University of Pakistan\nCybersecurity certificate, PNY Trainings, Lahore"],
+    ["echo $GOAL", "SOC Analyst"]
+  ],
+  now: ["TryHackMe SOC Level 1", "Red teaming and pentesting", "DFIR", "Internships"],
+  focus: [
+    {t: "Blue team", e: "Defend and investigate", l: ["SOC Level 1 path on TryHackMe", "Digital forensics (DFIR)", "Malware analysis module", "Log and traffic analysis with Wireshark"]},
+    {t: "Red team", e: "Think like an attacker", l: ["Penetration testing practice", "Certified Ethical Hacker (CEH) modules", "Kali Linux tooling", "Network scanning and enumeration"]},
+    {t: "Foundations", e: "Strong base", l: ["Networking: CCNA, Cisco, Packet Tracer", "Windows administration (MCSA)", "Linux (LPIC) and Python", "Azure and virtualization"]}
+  ],
+  skills: [["Penetration testing",65],["DFIR",55],["SOC Level 1",60],["Networking",75],["Malware analysis",50],["Python",65],["Linux and Kali",75],["Windows admin",70],["Azure",50]],   // SAMPLE levels: set honest values
+  tools: [     // n = name, s = logo slug (simpleicons.org), c = category. Remove any tool you did not use.
+    {n: "Kali Linux", s: "kalilinux", c: "Red team"}, {n: "Nmap", s: "nmap", c: "Red team"}, {n: "Burp Suite", s: "burpsuite", c: "Red team"}, {n: "Metasploit", s: "metasploit", c: "Red team"}, {n: "Hashcat", s: "hashcat", c: "Red team"},   // SAMPLE except Kali
+    {n: "Wireshark", s: "wireshark", c: "Blue team and DFIR"}, {n: "Splunk", s: "splunk", c: "Blue team and DFIR"}, {n: "Wazuh", s: "wazuh", c: "Blue team and DFIR"}, {n: "Autopsy", s: "autopsy", c: "Blue team and DFIR"}, {n: "Volatility", s: "volatility", c: "Blue team and DFIR"}, {n: "TryHackMe", s: "tryhackme", c: "Blue team and DFIR"},   // SAMPLE except Wireshark, TryHackMe
+    {n: "Cisco Packet Tracer", s: "cisco", c: "Networking"},
+    {n: "Python", s: "python", c: "Platforms and scripting"}, {n: "VMware", s: "vmware", c: "Platforms and scripting"}, {n: "VirtualBox", s: "virtualbox", c: "Platforms and scripting"}, {n: "Windows Server", s: "windows", c: "Platforms and scripting"}, {n: "Linux", s: "linux", c: "Platforms and scripting"}, {n: "Microsoft Azure", s: "microsoftazure", c: "Platforms and scripting"}, {n: "GitHub", s: "github", c: "Platforms and scripting"}
+  ],
+  projects: [  // SAMPLE texts: replace with your real projects. img = screenshot path or ""
+    {name: "Network Scanning Lab", img: "", short: "Scanned lab networks to find live hosts, open ports and running services.",
+     long: "Performed network scanning in a controlled lab to map hosts and services, then documented the findings.",
+     did: ["Discovered live hosts and open ports", "Identified service versions", "Wrote up the findings"], tools: ["Kali Linux", "Nmap"], link: "https://github.com/hanzla-malik"},
+    {name: "Wireshark Traffic Analysis", img: "", short: "Packet captures analysed to understand protocols and spot suspicious traffic.",
+     long: "Captured and analysed network traffic to follow conversations, inspect protocols and look for unusual behaviour.",
+     did: ["Filtered captures by protocol and host", "Followed TCP streams", "Noted suspicious patterns"], tools: ["Wireshark"], link: "https://github.com/hanzla-malik"},
+    {name: "TryHackMe: SOC Level 1", img: "", short: "Hands-on rooms covering alert triage, SIEM and incident handling.",
+     long: "Working through the SOC Level 1 path on TryHackMe, practising how analysts triage and investigate alerts.",
+     did: ["Completed guided rooms", "Practised alert triage", "Kept notes for each room"], tools: ["TryHackMe", "Splunk"], link: "https://github.com/hanzla-malik"},
+    {name: "DFIR Investigation Lab", img: "", short: "Forensic analysis of disk and memory evidence in a lab environment.",
+     long: "Practised digital forensics workflows: acquiring evidence, analysing artefacts and reporting what happened.",
+     did: ["Examined disk and memory artefacts", "Built a timeline of events", "Wrote a short report"], tools: ["Autopsy", "Volatility"], link: "https://github.com/hanzla-malik"},
+    {name: "Network and Virtualization Lab", img: "", short: "Cisco Packet Tracer topologies and virtual machines for testing.",
+     long: "Built network topologies in Packet Tracer and ran virtual machines in VMware and VirtualBox to test configurations safely.",
+     did: ["Configured routing and switching", "Built isolated VM labs", "Tested connectivity and services"], tools: ["Packet Tracer", "VMware", "VirtualBox"], link: "https://github.com/hanzla-malik"}
+  ],
+  shots: [     // SAMPLE captions. img = screenshot path or ""
+    {img: "", cap: "Nmap scan in Kali Linux"}, {img: "", cap: "Wireshark packet analysis"}, {img: "", cap: "TryHackMe room progress"},
+    {img: "", cap: "Forensic analysis output"}, {img: "", cap: "Packet Tracer topology"}, {img: "", cap: "Virtual machine lab setup"}
+  ],
+  certs: [     // status: "Completed" or "In progress". year/link optional.
+    {name: "Certified Ethical Hacker (CEH) course", by: "All modules completed", year: "", status: "Course completed", link: ""},
+    {name: "Cybersecurity Certificate", by: "PNY Trainings, Lahore", year: "", status: "Completed", link: ""},
+    {name: "Python Certification", by: "Issuer: add name", year: "", status: "Completed", link: ""},
+    {name: "Cisco Official Networking Course", by: "Cisco", year: "", status: "Completed", link: ""},
+    {name: "CCNA, MCSA and LPIC modules", by: "Networking, Windows Server, Linux", year: "", status: "Modules cleared", link: ""},
+    {name: "Malware Analysis Module", by: "Issuer: add name", year: "", status: "Completed", link: ""},
+    {name: "TryHackMe SOC Level 1", by: "TryHackMe", year: "", status: "In progress", link: ""}
+  ],
+  journey: [
+    {when: "Started", title: "Entered cybersecurity", place: "Training and self-study", text: "Began with security fundamentals, Kali Linux and Windows administration."},
+    {when: "Training", title: "Cybersecurity certificate", place: "PNY Trainings, Arfa Tower, Lahore", text: "Completed hands-on cybersecurity training."},
+    {when: "Courses", title: "Networking, systems and ethical hacking", place: "CCNA, MCSA, LPIC, Cisco, CEH, Python", text: "Cleared modules across networking, Windows, Linux and ethical hacking, plus a malware module."},
+    {when: "Now", title: "Internships", place: "Cybersecurity, digital forensics and networking", text: "Working across security monitoring, forensic investigation and network work."},
+    {when: "Now", title: "BSCS", place: "Virtual University of Pakistan", text: "Studying Computer Science while building practical security skills and working through TryHackMe SOC Level 1."},
+    {when: "Next", title: "SOC Analyst role", place: "Goal", text: "Joining a security team to monitor, investigate and respond."}
+  ]
+};
+
+/* ---------- helpers ---------- */
+const $ = id => document.getElementById(id), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const MONO = '<svg viewBox="0 0 100 120" aria-hidden="true"><path d="M50 6L90 20V56C90 84 72 104 50 114C28 104 10 84 10 56V20Z" fill="none" stroke="currentColor" stroke-width="3"/><text x="50" y="70" text-anchor="middle" font-size="28" font-weight="700" fill="currentColor" font-family="Unbounded,sans-serif">HM</text></svg>';
+const phHTML = l => `<div class="ph">${MONO}<span>${l}</span></div>`;
+window.ph = el => { el.outerHTML = phHTML(el.dataset.l || "Add image"); };
+window.lf = el => { const b = document.createElement("b"); b.textContent = el.dataset.i; el.replaceWith(b); };
+const media = (src, alt, label) => src ? `<img src="${src}" alt="${alt}" loading="lazy" data-l="${label}" onerror="ph(this)">` : phHTML(label);
+const chrome = '<div class="wb"><i></i><i></i><i></i></div>';
+
+/* ---------- render ---------- */
+document.title = DATA.name.join(" ") + " | " + DATA.roles[0];
+$("yr").textContent = new Date().getFullYear();
+$("navCv").href = $("heroCv").href = DATA.resume;
+$("name").innerHTML = DATA.name.map(n => `<span class="ln"><span>${n}</span></span>`).join("");
+$("tag").textContent = DATA.tagline;
+$("heroImg").innerHTML = media(DATA.heroImage, DATA.name.join(" "), "Add your photo");
+$("soc").innerHTML = `<a href="${DATA.github}" target="_blank" rel="noopener" aria-label="GitHub">GH</a><a href="${DATA.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">in</a><a href="mailto:${DATA.email}" aria-label="Email">@</a>`;
+$("mq").innerHTML = [...DATA.tools, ...DATA.tools].map(t => `<span>${t.n}</span>`).join("");
+let li = 0;
+$("term").innerHTML = DATA.terminal.map(([c, o]) => `<div class="tln" style="--i:${li++}"><span class="pr">$</span> ${c}</div><div class="tln o" style="--i:${li++}">${o}</div>`).join("") + `<div class="tln" style="--i:${li}"><span class="pr">$</span> <span class="cu"></span></div>`;
+const stat = [["Years in cybersecurity", DATA.years], ["Certifications", DATA.certs.length], ["Projects", DATA.projects.length], ["Tools used", DATA.tools.length]];
+$("abr").innerHTML = stat.map(([l, v]) => `<div class="bc"><span class="n" data-n="${v}">0</span><small>${l}</small></div>`).join("") + `<div class="bc now"><div class="pill" style="margin:0"><i></i>Learning right now</div><h3>Always in the lab</h3><div class="chips">${DATA.now.map(x => `<span>${x}</span>`).join("")}</div></div>`;
+$("focus").innerHTML = DATA.focus.map(f => `<div class="fp"><h3>${f.t} <em>/</em></h3><small style="color:var(--dim)">${f.e}</small><ul>${f.l.map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("");
+$("radar").innerHTML = (function () {
+  const n = DATA.skills.length, cx = 210, cy = 200, R = 120, pt = (i, k) => { const a = -Math.PI / 2 + i * 2 * Math.PI / n; return [(cx + Math.cos(a) * R * k).toFixed(1), (cy + Math.sin(a) * R * k).toFixed(1)]; };
+  const grid = [.25, .5, .75, 1].map(k => `<polygon class="gr" points="${DATA.skills.map((_, i) => pt(i, k).join(",")).join(" ")}"/>`).join("");
+  const axes = DATA.skills.map((_, i) => { const [x, y] = pt(i, 1); return `<line class="gr" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`; }).join("");
+  const labels = DATA.skills.map(([nm], i) => { const [x, y] = pt(i, 1.24); return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle">${nm}</text>`; }).join("");
+  return `<svg class="rad" viewBox="0 0 420 400" role="img" aria-label="Skills radar chart">${grid}${axes}<polygon class="dp" points="${DATA.skills.map(([, v], i) => pt(i, v / 100).join(",")).join(" ")}"/>${labels}</svg>`;
+})();
+$("bars").innerHTML = DATA.skills.map(([n, v]) => `<div class="bar"><div class="t"><span>${n}</span><span>${v}%</span></div><div class="m"><i data-w="${v}"></i></div></div>`).join("");
+const cats = ["All", ...new Set(DATA.tools.map(t => t.c))];
+$("filt").innerHTML = cats.map((c, i) => `<button class="chip${i ? "" : " on"}" data-f="${c}">${c}</button>`).join("");
+$("toolBox").innerHTML = DATA.tools.map((t, i) => `<div class="tool" data-c="${t.c}"><div class="lg"><img src="https://cdn.simpleicons.org/${t.s}" alt="" loading="lazy" data-i="${t.n.slice(0, 2)}" onerror="lf(this)"></div><span>${t.n}<small>${t.c}</small></span></div>`).join("");
+$("filt").onclick = e => { const b = e.target.closest(".chip"); if (!b) return; document.querySelectorAll(".chip").forEach(x => x.classList.toggle("on", x === b)); document.querySelectorAll(".tool").forEach((t, k) => { const show = b.dataset.f === "All" || t.dataset.c === b.dataset.f; t.classList.toggle("hide", !show); if (show) { t.style.setProperty("--d", (k % 8) * 45 + "ms"); t.style.animation = "none"; t.offsetWidth; t.style.animation = ""; } }); };
+$("gal").innerHTML = DATA.shots.map((s, i) => `<figure class="gi" data-s="${i}">${chrome}<div class="mi">${media(s.img, s.cap, "Add screenshot")}</div><p>${s.cap}</p></figure>`).join("");
+$("certBox").innerHTML = DATA.certs.map(c => `<div class="cert" data-tilt><em class="${/progress/i.test(c.status) ? "ip" : ""}">${c.status}</em><h3>${c.name}</h3><p>${c.by}${c.year ? " &middot; " + c.year : ""}</p>${c.link ? `<a href="${c.link}" target="_blank" rel="noopener">Verify credential</a>` : ""}</div>`).join("");
+$("tl").innerHTML = DATA.journey.map(j => `<div class="it"><small>${j.when}</small><h3>${j.title}</h3><div class="pl2">${j.place}</div><p>${j.text}</p></div>`).join("");
+$("links").innerHTML = `<a class="btn" data-mag href="mailto:${DATA.email}">Email me</a><a class="btn gh" data-mag href="${DATA.linkedin}" target="_blank" rel="noopener">LinkedIn</a><a class="btn gh" data-mag href="${DATA.github}" target="_blank" rel="noopener">GitHub</a>`;
+$("form").onsubmit = e => { e.preventDefault(); location.href = `mailto:${DATA.email}?subject=${encodeURIComponent("Portfolio message from " + $("fn").value)}&body=${encodeURIComponent($("fm").value + "\n\n" + $("fn").value + " (" + $("fe").value + ")")}`; };
+
+/* ---------- dialog, menu ---------- */
+const dlg = $("dlg"), dbody = $("dlgBody");
+document.addEventListener("click", e => {
+  const p = e.target.closest("[data-p]"), s = e.target.closest("[data-s]");
+  if (p) { const d = DATA.projects[p.dataset.p]; dbody.innerHTML = media(d.img, d.name, "Add project screenshot") + `<div class="dc"><h3>${d.name}</h3><p>${d.long}</p><ul>${d.did.map(x => `<li>${x}</li>`).join("")}</ul><div class="tags">${d.tools.map(t => `<span>${t}</span>`).join("")}</div><a class="btn sm" href="${d.link}" target="_blank" rel="noopener">View on GitHub</a></div>`; dlg.showModal(); }
+  else if (s) { const d = DATA.shots[s.dataset.s]; dbody.innerHTML = media(d.img, d.cap, "Add screenshot") + `<div class="dc"><p>${d.cap}</p></div>`; dlg.showModal(); }
+  else if (e.target === dlg) dlg.close();
+  if (e.target.closest("#nav a")) $("nav").classList.remove("open");
+});
+$("menu").onclick = () => { const o = $("nav").classList.toggle("open"); $("menu").setAttribute("aria-expanded", o); };
+
+/* ---------- preloader ---------- */
+(function () {
+  const pre = $("pre"), go = () => { document.body.classList.remove("lock"); document.body.classList.add("go"); };
+  if (reduce) { pre.remove(); go(); return; }
+  setTimeout(() => { pre.classList.add("out"); go(); setTimeout(() => pre.remove(), 1500); }, 2000);
+})();
+
+/* ---------- cursor, magnetic buttons, tilt, hero parallax ---------- */
+if (matchMedia("(hover:hover) and (pointer:fine)").matches && !reduce) {
+  let x = 0, y = 0, rx = 0, ry = 0;
+  addEventListener("pointermove", e => { x = e.clientX; y = e.clientY; $("cd").style.transform = `translate(${x}px,${y}px)`; });
+  (function f() { rx += (x - rx) * .18; ry += (y - ry) * .18; $("cr").style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(f); })();
+  document.addEventListener("pointerover", e => $("cr").classList.toggle("h", !!e.target.closest("a,button,[data-p],[data-s]")));
+  document.querySelectorAll("[data-mag]").forEach(b => {
+    b.addEventListener("pointermove", e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .3}px,${(e.clientY - r.top - r.height / 2) * .4}px)`; });
+    b.addEventListener("pointerleave", () => b.style.transform = "");
+  });
+  $("hero").addEventListener("pointermove", e => { $("scene").style.setProperty("--px", (e.clientX / innerWidth - .5) * 2); $("scene").style.setProperty("--py", (e.clientY / innerHeight - .5) * 2); });
+}
+function tilt(el, max, z) {
+  if (reduce) return;
+  el.addEventListener("pointermove", e => { const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    el.style.transform = `rotateY(${x * max}deg) rotateX(${-y * max}deg)${z ? " translateZ(8px)" : ""}`; el.style.setProperty("--mx", (x + .5) * 100 + "%"); el.style.setProperty("--my", (y + .5) * 100 + "%"); });
+  el.addEventListener("pointerleave", () => el.style.transform = "");
+}
+tilt($("frame"), 18, false);
+document.querySelectorAll(".tool").forEach(t => tilt(t, 8, true));
+document.querySelectorAll("[data-tilt]").forEach(t => tilt(t, 6, true));
+
+/* ---------- role typing, hero feed, scramble ---------- */
+(async function () {
+  const el = $("role"), sl = ms => new Promise(r => setTimeout(r, ms));
+  if (reduce) { el.textContent = DATA.roles[0]; return; }
+  await sl(2300);
+  for (let k = 0; ; k = (k + 1) % DATA.roles.length) { const t = DATA.roles[k];
+    for (let i = 1; i <= t.length; i++) { el.textContent = t.slice(0, i); await sl(55); } await sl(1500);
+    for (let i = t.length; i >= 0; i--) { el.textContent = t.slice(0, i); await sl(28); } await sl(300); }
+})();
+(function () {
+  const L = ["Multiple failed logins from one IP", "Port scan detected on lab network", "Suspicious PowerShell execution flagged", "DNS query to newly registered domain", "Alert triaged: false positive, closed"];
+  let i = 0; const f = $("feed"), next = () => { f.innerHTML = `<b>[SOC feed, simulated]</b> ${L[i++ % L.length]}`; }; next(); if (!reduce) setInterval(next, 2600);
+})();
+function scramble(el) {
+  const t = el.dataset.t || el.textContent; el.dataset.t = t; if (reduce) return; let i = 0; const ch = "01#/<>_*";
+  const id = setInterval(() => { el.textContent = t.split("").map((c, k) => k < i || c === " " ? c : ch[Math.random() * ch.length | 0]).join(""); i += .6; if (i >= t.length) { el.textContent = t; clearInterval(id); } }, 30);
+}
+
+/* ---------- hacking background: matrix code rain ---------- */
+(function () {
+  if (reduce) return;
+  const cv = $("rain"), hero = $("hero"), ctx = cv.getContext("2d");
+  const ch = "01".split(""), fs = 16; let W, H, cols, drops, vis = true, last = 0;
+  function size() { W = cv.width = hero.clientWidth; H = cv.height = hero.clientHeight; cols = Math.ceil(W / fs); drops = Array.from({length: cols}, () => Math.random() * -60); ctx.fillStyle = "#0B0B0C"; ctx.fillRect(0, 0, W, H); }
+  size(); addEventListener("resize", size);
+  new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hero);
+  (function draw(ts) {
+    requestAnimationFrame(draw); if (!vis || ts - last < 55) return; last = ts;
+    ctx.fillStyle = "rgba(11,11,12,.14)"; ctx.fillRect(0, 0, W, H); ctx.font = "bold " + fs + "px monospace";
+    for (let i = 0; i < cols; i++) {
+      const y = drops[i] * fs; ctx.fillStyle = Math.random() > .97 ? "#FFFFFF" : "#FF6B5B";
+      ctx.fillText(ch[Math.random() * ch.length | 0], i * fs, y);
+      if (y > H && Math.random() > .975) drops[i] = 0; drops[i]++;
+    }
+  })(0);
+})();
+
+/* ---------- scroll: progress, projects, timeline, parallax ---------- */
+(function () {
+  const pl = $("pl"), pv = $("pv"), pj = $("pj"), P = DATA.projects; let cur = 0, shown = false;
+  pl.innerHTML = P.map((p, i) => `<button class="pi" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span><span class="t">${p.name}<small>${p.tools.slice(0, 3).join(" &middot; ")}</small></span><i></i></button>`).join("");
+  function show(i) {
+    cur = i; const p = P[i];
+    document.querySelectorAll(".pi").forEach((b, k) => b.classList.toggle("on", k === i));
+    pv.innerHTML = `<div class="im" data-p="${i}">${chrome}<div class="mi">${media(p.img, p.name, "Add project screenshot")}</div></div><div class="pd"><h3>${p.name}</h3><p>${p.long}</p><ul>${p.did.map(x => `<li>${x}</li>`).join("")}</ul><div class="tags">${p.tools.map(t => `<span>${t}</span>`).join("")}</div><a class="btn sm" href="${p.link}" target="_blank" rel="noopener">View on GitHub</a></div>`;
+  }
+  pl.onclick = e => { const b = e.target.closest(".pi"); if (b && +b.dataset.i !== cur) show(+b.dataset.i); };
+  pl.addEventListener("animationend", e => { if (e.animationName === "fill") show((cur + 1) % P.length); });
+  pj.classList.add("off"); show(0);
+  new IntersectionObserver(e => { const on = e[0].isIntersecting; pj.classList.toggle("off", !on); if (on && !shown) { shown = true; show(cur); } }, {threshold: .35}).observe(pj);
+})();
+const tlEl = $("tl");
+let lastY = 0; const secs = [...document.querySelectorAll("main section.pad")];
+function onScroll() {
+  const h = document.documentElement; $("prog").style.width = scrollY / (h.scrollHeight - innerHeight) * 100 + "%";
+  const y = scrollY, pr = y / (h.scrollHeight - innerHeight); document.querySelector("header.nav").classList.toggle("hide", y > lastY && y > 240 && !$("nav").classList.contains("open")); lastY = y;
+  document.body.style.setProperty("--gy", (15 + pr * 70) + "%"); document.body.style.setProperty("--gx", (85 - pr * 60) + "%");
+  const r = tlEl.getBoundingClientRect(); tlEl.style.setProperty("--p", clamp((innerHeight * .65 - r.top) / r.height));
+  if (!reduce && scrollY < innerHeight) $("scene").style.translate = `0 ${scrollY * -.1}px`;
+  if (!reduce) secs.forEach(s => { const r = s.getBoundingClientRect(), q = clamp(1 - r.bottom / (innerHeight * .85)); if (q <= 0 || r.top > innerHeight) { if (s._q) { s.style.transform = ""; s.style.opacity = ""; s._q = 0; } return; } s._q = 1; s.style.transformOrigin = "50% 100%"; s.style.transform = `translateY(${q * -24}px) scale(${1 - q * .05})`; s.style.opacity = 1 - q * .75; });
+}
+addEventListener("scroll", onScroll, {passive: true}); onScroll();
+document.querySelectorAll(".bc,.fp,.cert,.gi,.bar,.tool").forEach(el => { el.classList.add("st-i"); el.style.setProperty("--d", Math.min([...el.parentElement.children].indexOf(el), 9) * 70 + "ms"); });
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return; const t = e.target; t.classList.add("in");
+  t.querySelectorAll("[data-n]").forEach(n => { const to = +n.dataset.n; let c = 0; const st = () => { c += Math.max(.1, to / 45); if (c >= to) n.textContent = to; else { n.textContent = Math.floor(c); requestAnimationFrame(st); } }; to ? st() : n.textContent = 0; });
+  t.querySelectorAll(".m i").forEach(m => m.style.width = m.dataset.w + "%");
+  t.querySelectorAll("[data-scr]").forEach(scramble); io.unobserve(t);
+}), {threshold: .12});
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+const so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.hash === "#" + e.target.id)); }), {rootMargin: "-45% 0px -50% 0px"});
+document.querySelectorAll("main section[id]").forEach(s => so.observe(s));
+const seen = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add("seen"); }), {threshold: .05});
+document.querySelectorAll("main section.pad").forEach(s => seen.observe(s));
+</script>
+</body>
+</html>
